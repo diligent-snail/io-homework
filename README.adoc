@@ -1,0 +1,59 @@
+= Задание на ввод-вывод
+
+. Считать файл
+. Заменить в нём все нецензурные слова на `\***`
+. Записать результат в файл
+
+Как получать список нецензурных слов -- написано в `main`, link:src/main/java/org/diligentsnail/iohomework/Main.java[`Main.java`]
+
+== Пример
+
+.Запуск программы
+[source,bash]
+----
+java -jar application.jar /tmp/bad.txt
+----
+
+.`/tmp/bad.txt`
+[source,text]
+----
+Сегодня ночью мне приснился NullPointerException
+----
+
+`NullPointerException` -- нецензурное слово.
+Результат работы:
+
+.`/tmp/bad.txt.clean`
+[source,text]
+----
+Сегодня ночью мне приснился ***
+----
+
+== Входной и выходной файлы
+
+. Если параметр командной строки есть, то:
+.. Входной файл -- первый параметр командной строки
+... Если файла нет, то пишем ошибку в консоль и выходим
+.. Выходной файл -- имя входного файла + `.clean`
+... Пример: входной -- `bad.txt`, выходной -- `bad.txt.clean`
+. Если параметра командной строки нет, то ввод -- в `System.in`, вывод -- `System.out`
+
+== Тесты
+
+Добавить к своей реализации JUnit5 тесты.
+
+Небольшой пример с временным файлом -- в link:src/test/java/org/diligentsnail/iohomework/iohomework/TempDirSampleTest.java[`TempDirSampleTest.java`]
+
+== Опциональная часть
+
+Добавить возможность замены `\***` через файл `.properties`:
+
+. В файле link:src/main/resources/application.properties[`application.properties`] добавить новое свойство, аналогично `expletives`
+. Добавить поле, геттер к нему, параметр конструктора в link:src/main/java/org/diligentsnail/iohomework/ApplicationProperties.java[`ApplicationProperties.java`]
+. Воспользоваться геттером для замены нецензурщины
+
+== Ссылки
+
+. https://docs.oracle.com/javase/tutorial/essential/io/[Lesson: Basic I/O]
+. https://docs.oracle.com/javase/tutorial/essential/environment/properties.html[Properties]
+. https://junit.org/junit5/docs/current/user-guide/#writing-tests-built-in-extensions-TempDirectory[The TempDirectory Extension] -- о `@TempDir`
